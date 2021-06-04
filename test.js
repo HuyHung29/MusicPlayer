@@ -25,6 +25,8 @@ const randomBtn = $('.random-btn');
 const repeatBtn = $('.repeat-btn');
 const song = $('.song');
 const playList = $('.play-list');
+const current = $('.current-time');
+const duration = $('.duration');
 
 const app = {
   currentIndex: 0,
@@ -168,7 +170,7 @@ const app = {
       })
     }, 300)
   },
-
+  // Xử lý các sự kiện 
   handleEvents() {
     const cd = $('.cd');
     const cdWidth = cd.offsetWidth;
@@ -209,7 +211,9 @@ const app = {
       //When playing
       audio.ontimeupdate = function() {
         if(audio.duration) {
-          process.value = Math.floor(audio.currentTime / audio.duration * 100)
+          process.value = Math.floor(this.currentTime / this.duration * 100)
+          current.innerHTML = `0${Math.floor(this.currentTime / 60)}:${Math.floor(this.currentTime % 60)}`
+          duration.innerHTML = `0${Math.floor(this.duration / 60)}:${Math.floor(this.duration % 60)}`
         }
       }
 
@@ -307,7 +311,7 @@ const app = {
 
     //Render giao dien
     this.renderPlayList();
-
+    
     randomBtn.classList.toggle('active', this.isRandom);
     repeatBtn.classList.toggle('active', this.isRepeat);
   }

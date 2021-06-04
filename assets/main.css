@@ -137,6 +137,12 @@ body {
     cursor: pointer;
 }
 
+.range {
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+}
+
 /* Play list */
 .play-list {
     margin-top: 443px;
@@ -200,3 +206,5 @@ body {
     color: rgb(126, 123, 123);
     padding: 8px;
 }
+
+/* process.value = Math.floor(this.currentTime / this.duration * 100) */
