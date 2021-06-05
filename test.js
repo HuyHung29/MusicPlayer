@@ -27,7 +27,7 @@ const song = $('.song');
 const playList = $('.play-list');
 const current = $('.current-time');
 const duration = $('.duration');
-const dashBoard = $('.dashboard')
+
 
 
 
@@ -204,8 +204,6 @@ const app = {
         cdRotate.play();
         _this.renderPlayList();
         _this.scrollIntoView();
-        this.volume = 0.2
-        console.log(this.volume)
       }
 
       //Pause
@@ -318,7 +316,7 @@ const app = {
 
     //Render giao dien
     this.renderPlayList();
-    playList.style.marginTop = dashBoard.offsetHeight + 'px';
+
     randomBtn.classList.toggle('active', this.isRandom);
     repeatBtn.classList.toggle('active', this.isRepeat);
   }
