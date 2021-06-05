@@ -27,6 +27,10 @@ const song = $('.song');
 const playList = $('.play-list');
 const current = $('.current-time');
 const duration = $('.duration');
+const dashBoard = $('.dashboard')
+
+
+
 
 const app = {
   currentIndex: 0,
@@ -126,6 +130,7 @@ const app = {
                 </div>`
       })
         playList.innerHTML = htmls.join('');
+        duration.innerHTML = '00:00'
   },
 
   defineProperties() {
@@ -199,6 +204,8 @@ const app = {
         cdRotate.play();
         _this.renderPlayList();
         _this.scrollIntoView();
+        this.volume = 0.2
+        console.log(this.volume)
       }
 
       //Pause
@@ -212,9 +219,9 @@ const app = {
       audio.ontimeupdate = function() {
         if(audio.duration) {
           process.value = Math.floor(this.currentTime / this.duration * 100)
-          current.innerHTML = `0${Math.floor(this.currentTime / 60)}:${Math.floor(this.currentTime % 60)}`
           duration.innerHTML = `0${Math.floor(this.duration / 60)}:${Math.floor(this.duration % 60)}`
         }
+        current.innerHTML = `0${Math.floor(this.currentTime / 60)}:${Math.floor(this.currentTime % 60)}`
       }
 
       process.onchange = function() {
@@ -311,7 +318,7 @@ const app = {
 
     //Render giao dien
     this.renderPlayList();
-    
+    playList.style.marginTop = dashBoard.offsetHeight + 'px';
     randomBtn.classList.toggle('active', this.isRandom);
     repeatBtn.classList.toggle('active', this.isRepeat);
   }

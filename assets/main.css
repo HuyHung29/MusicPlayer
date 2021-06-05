@@ -133,7 +133,7 @@ body {
     appearance: none;
     width: 12px;
     height: 6px;
-    background-color: red;
+    background-color: var(--primary-color);
     cursor: pointer;
 }
 
@@ -206,5 +206,3 @@ body {
     color: rgb(126, 123, 123);
     padding: 8px;
 }
-
-/* process.value = Math.floor(this.currentTime / this.duration * 100) */
