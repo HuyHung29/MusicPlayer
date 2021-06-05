@@ -35,6 +35,8 @@ const app = {
   isRandom: false,
   isRepeat: false,
   isRepeat: false,
+  arrayTemp: [],
+  count: 0,
   songs: [
       {
         name: "Walk On Da Street",
@@ -155,13 +157,20 @@ const app = {
   },
   
   playRandom() {
-    var newIndex 
+    this.arrayTemp[this.count] = this.currentIndex;
+    var newIndex = Math.floor(Math.random() * this.songs.length);
+    if (newIndex)
     do {
       newIndex = Math.floor(Math.random() * this.songs.length);
-    } while (newIndex === this.currentIndex);
-      
+    } while(this.arrayTemp.includes(newIndex));
+    this.arrayTemp[this.count] = newIndex;
     this.currentIndex = newIndex;
     this.loadCurrentSong();
+    this.count++;
+    if (this.count > this.songs.length-1) {
+      this.arrayTemp = [];
+      this.count = 0;
+    }
   },
 
   scrollIntoView() {
@@ -275,7 +284,6 @@ const app = {
       } else {
         nextBtn.click();
       }
-
     }
 
     //Play on click song
@@ -283,13 +291,16 @@ const app = {
       const songNode = e.target.closest('.song:not(.active)');
       const optionNode = e.target.closest('.option');
       if (songNode || optionNode) {
-        if (songNode) {
+        if (songNode && !optionNode) {
           _this.currentIndex = Number(songNode.dataset.index);
           _this.loadCurrentSong();
           audio.play();
+        } 
+        if (optionNode) {
+          optionNode.onclick = function(e) {
+          }
         }
-      }
-      
+      } 
     }
   },
 
@@ -322,3 +333,4 @@ const app = {
  
  
 app.start();
+
