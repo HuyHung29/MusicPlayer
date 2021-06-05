@@ -29,9 +29,6 @@ const current = $('.current-time');
 const duration = $('.duration');
 
 
-
-
-
 const app = {
   currentIndex: 0,
   isPlaying: false,
@@ -268,7 +265,7 @@ const app = {
     repeatBtn.onclick = function() {
       _this.isRepeat = !_this.isRepeat;
       _this.setConfig('isRepeat', _this.isRepeat);
-      this.classList.toggle('active', _this.isRandom)
+      this.classList.toggle('active',_this.isRepeat);
     }
 
     //Next/repeat on ended 
@@ -278,6 +275,7 @@ const app = {
       } else {
         nextBtn.click();
       }
+
     }
 
     //Play on click song
